@@ -1,0 +1,65 @@
+<div *ngIf="wasteLevelTooHigh" class="alert alert-danger" role="alert">
+  The waste level for the selected list is too HIGH!
+  You could choose to donate some of the food to the local Orphanages or homeless shelters around!
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Your Grocery Lists</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Grocery List </th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let groceryList of groceryLists | async">
+        <td>{{groceryList.groceryListName}}</td>
+        <td><button (click)="deleteGroceryList(groceryList.groceryListId)" class="btn btn-danger">Delete</button>
+          <button  (click)="groceryListDetails(groceryList.groceryListId)" class="btn btn-info" style="margin-left: 10px">Details</button>
+          <button (click)= "calculateWaste(groceryList.groceryListId)" type="submit" class="btn btn-success" style="margin-left: 10px">Waste Level</button>
+        </td>
+      </tr>
+      <button routerLink="addGroceryList" class="btn btn-success pull-right">Add Grocery List</button>
+      </tbody>
+    </table>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Input Day for waste level calculation</th>
+        <th>Input your burndown goal</th>
+      </tr>
+      </thead>
+      <tbody>
+        <td>
+          <input type="date" class="form-control" id="calculationDate" required [(ngModel)]="wasteCalculator.calculationDate" name="calculationDate">
+        </td>
+        <td>
+          <input type="number" class="form-control" id="burndownRateGoal" required [(ngModel)]="wasteCalculator.burndownRateGoal" name="burndownRateGoal">
+        </td>
+      </tbody>
+
+      <div *ngIf="canCalculateWaste">
+        The calorie value for {{wasteCalculator.groceryListName}} is {{wasteCalculator.wasteResult}}
+        And the waste levels are {{wasteCalculator.wasteResult - wasteCalculator.burndownRateGoal}}
+        <div>
+          <button (click)="generateTextReport()"  class="btn btn-success pull-right">Generate Text Report</button>
+        </div>
+
+        <div>
+          <button  (click)="generateJsonReport()" style="margin-top: 10px" class="btn btn-success pull-right">Generate Json Report</button>
+        </div>
+
+      </div>
+    </table>
+
+
+
+
+  </div>
+
+</div>

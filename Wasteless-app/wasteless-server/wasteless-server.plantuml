@@ -1,0 +1,319 @@
+@startuml
+
+title __WASTELESS-SERVER's Class Diagram__\n
+
+  namespace wasteless.server {
+    class wasteless.server.Application {
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace business {
+      class wasteless.server.business.ExportService {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace business {
+      class wasteless.server.business.GroceryListService {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace business {
+      class wasteless.server.business.ItemService {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace business {
+      class wasteless.server.business.UserService {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace business {
+      class wasteless.server.business.WasteManagerService {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace configuration {
+      class wasteless.server.configuration.CorsConfiguration {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace exception {
+      class wasteless.server.exception.ErrorDetails {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace exception {
+      class wasteless.server.exception.GlobalExceptionHandler {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace exception {
+      class wasteless.server.exception.ResourceNotFoundException {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace export.factory {
+      interface wasteless.server.export.factory.AbstractFactory {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace export.factory {
+      class wasteless.server.export.factory.FactoryProvider {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace export.factory {
+      enum FactoryType {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace export.factory {
+      class wasteless.server.export.factory.ReportFactory {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace export.report {
+      class wasteless.server.export.report.JsonReport {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace export.report {
+      interface wasteless.server.export.report.Report {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace export.report {
+      enum ReportType {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace export.report {
+      class wasteless.server.export.report.TextReport {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace model {
+      class wasteless.server.model.GroceryList {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace model {
+      class wasteless.server.model.Item {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace model {
+      class wasteless.server.model.User {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace persistance {
+      interface wasteless.server.persistance.GroceryListRepository {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace persistance {
+      interface wasteless.server.persistance.ItemRepository {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace persistance {
+      interface wasteless.server.persistance.UserRepository {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      class wasteless.server.presentation.GroceryListController {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      class wasteless.server.presentation.ItemController {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      class wasteless.server.presentation.UserController {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      namespace dto {
+        class wasteless.server.presentation.dto.GroceryListDTO {
+        }
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      namespace dto {
+        class wasteless.server.presentation.dto.ItemDTO {
+        }
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      namespace dto {
+        class wasteless.server.presentation.dto.UserDTO {
+        }
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      namespace dto {
+        class wasteless.server.presentation.dto.WasteCalculatorDTO {
+        }
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      namespace mapper {
+        class wasteless.server.presentation.mapper.GroceryListMapper {
+        }
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      namespace mapper {
+        class wasteless.server.presentation.mapper.ItemMapper {
+        }
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
+      namespace mapper {
+        class wasteless.server.presentation.mapper.UserMapper {
+        }
+      }
+    }
+  }
+  
+
+  wasteless.server.business.ExportService o-- wasteless.server.export.factory.FactoryProvider : factoryProvider
+  wasteless.server.business.GroceryListService o-- wasteless.server.presentation.mapper.GroceryListMapper : groceryListMapper
+  wasteless.server.business.GroceryListService o-- wasteless.server.persistance.GroceryListRepository : groceryListRepository
+  wasteless.server.business.GroceryListService o-- wasteless.server.persistance.UserRepository : userRepository
+  wasteless.server.business.ItemService o-- wasteless.server.persistance.GroceryListRepository : groceryListRepository
+  wasteless.server.business.ItemService o-- wasteless.server.persistance.ItemRepository : itemRepository
+  wasteless.server.business.UserService o-- wasteless.server.persistance.UserRepository : userRepository
+  wasteless.server.exception.GlobalExceptionHandler -up-|> org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
+  wasteless.server.export.factory.ReportFactory .up.|> wasteless.server.export.factory.AbstractFactory
+  wasteless.server.export.report.JsonReport .up.|> wasteless.server.export.report.Report
+  wasteless.server.export.report.TextReport .up.|> wasteless.server.export.report.Report
+  wasteless.server.model.GroceryList o-- wasteless.server.model.User : user
+  wasteless.server.model.Item o-- wasteless.server.model.GroceryList : groceryList
+  wasteless.server.presentation.GroceryListController o-- wasteless.server.business.ExportService : exportService
+  wasteless.server.presentation.GroceryListController o-- wasteless.server.presentation.mapper.GroceryListMapper : groceryListMapper
+  wasteless.server.presentation.GroceryListController o-- wasteless.server.business.GroceryListService : groceryListService
+  wasteless.server.presentation.GroceryListController o-- wasteless.server.business.WasteManagerService : wasteManagerService
+  wasteless.server.presentation.ItemController o-- wasteless.server.presentation.mapper.ItemMapper : itemMapper
+  wasteless.server.presentation.ItemController o-- wasteless.server.business.ItemService : itemService
+  wasteless.server.presentation.UserController o-- wasteless.server.presentation.mapper.UserMapper : userMapper
+  wasteless.server.presentation.UserController o-- wasteless.server.business.UserService : userService
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

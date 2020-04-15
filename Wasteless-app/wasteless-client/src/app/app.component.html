@@ -1,0 +1,37 @@
+
+
+<head>
+
+  <link rel="stylesheet" href=
+    "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<!--
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class="navbar navbar-dark bg-dark">
+    <li class="navbar-brand" >
+      <a routerLink="register" class="nav-link" routerLinkActive="active">Register Here</a>
+    </li>
+    <li class="navbar-brand">
+      <a routerLink="login" class="nav-link" routerLinkActive="active">Login Here</a>
+    </li>
+  </ul>
+</nav>
+-->
+<div class="topnav">
+  <a routerLink="register" class="nav-link" routerLinkActive="active">Register Here</a>
+  <a routerLink="login" class="nav-link" routerLinkActive="active">Login Here</a>
+
+</div>
+<div class="container">
+  <br>
+  <h2 style="text-align: center;">{{title}}</h2>
+  <hr>
+  <div class="card">
+    <div class="card-body">
+
+  <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+

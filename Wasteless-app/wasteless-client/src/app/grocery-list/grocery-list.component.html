@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Item List</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of items | async">
+        <td>{{item.itemName}}</td>
+        <td>{{item.quantity}}</td>
+        <td><button (click)="deleteItem(item.itemId)" class="btn btn-danger">Delete</button>
+          <button  (click)="itemDetails(item.itemId)" class="btn btn-info" style="margin-left: 10px">Details</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <button routerLink="addItem" class="btn btn-success pull-right">Add Item</button>
+  </div>
+  <button (click)="mainPage()" style="margin-top: 10px" class="btn btn-primary">Back to Main Page</button>
+</div>

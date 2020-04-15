@@ -1,0 +1,52 @@
+@startuml
+!define DARKORANGE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+title __FACTORY's Class Diagram__\n
+
+  namespace wasteless.server {
+    namespace export.factory {
+      interface AbstractFactory {
+          {abstract} + create()
+      }
+      class FactoryProvider {
+                + getFactory()
+            }
+       enum FactoryType {
+              REPORT_FACTORY
+            }
+
+      class ReportFactory {
+                + create()
+            }
+      ReportFactory .up.|> AbstractFactory
+    }
+
+    namespace export.report {
+          class JsonReport {
+              + dumpReport()
+          }
+          interface Report {
+                   {abstract} + dumpReport()
+          }
+
+          enum ReportType {
+                  JSON_REPORT
+                  TEXT_REPORT
+          }
+
+         class TextReport {
+                   + dumpReport()
+                   - writeToFile()
+            }
+
+          JsonReport .up.|> Report
+          TextReport .up.|> Report
+
+        }
+  }
+
+
+
+
+@enduml

@@ -1,0 +1,28 @@
+<h2>Item Details</h2>
+
+<hr/>
+<div *ngIf="item">
+  <div>
+    <label><b>Item Name: </b></label> {{item.itemName}}
+  </div>
+  <div>
+    <label><b>Item Quantity: </b></label> {{item.quantity}}
+  </div>
+  <div>
+    <label><b>Item Calorie Value: </b></label> {{item.calorieValue}}
+  </div>
+  <div>
+    <label><b>Item Purchase Date: </b></label> {{item.purchaseDate}}
+  </div>
+  <div>
+    <label><b>Item Consumption Date: </b></label> {{item.consumptionDate}}
+  </div>
+  <div>
+    <label><b>Item Expiration Date: </b></label> {{item.expirationDate}}
+  </div>
+
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Grocery List</button><br>

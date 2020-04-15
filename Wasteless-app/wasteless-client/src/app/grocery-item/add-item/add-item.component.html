@@ -1,0 +1,44 @@
+<h3>Add Item</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Item Name</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="item.itemName" name="itemName">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Quantity(ml/g)</label>
+      <input type="number" class="form-control" id="quantity" required [(ngModel)]="item.quantity" name="quantity">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Calorie Value</label>
+      <input type="number" class="form-control" id="calorieValue" required [(ngModel)]="item.calorieValue" name="calorieValue">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Purchase Date</label>
+      <input type="date" class="form-control" id="purchaseDate" required [(ngModel)]="item.purchaseDate" name="purchaseDate">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Consumption Date</label>
+      <input type="date" class="form-control" id="consumptionDate" required [(ngModel)]="item.consumptionDate" name="consumptionDate">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Expiration Date</label>
+      <input type="date" class="form-control" id="expirationDate" required [(ngModel)]="item.expirationDate" name="expirationDate">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+  <form (keydown)="keyDownFunction($event)">
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
