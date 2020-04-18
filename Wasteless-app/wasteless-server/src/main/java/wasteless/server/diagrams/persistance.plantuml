@@ -1,7 +1,4 @@
 @startuml
-!define DARKORANGE
-!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
-
 
 title __PERSISTANCE's Class Diagram__\n
 
@@ -9,16 +6,26 @@ title __PERSISTANCE's Class Diagram__\n
     namespace persistance {
       interface wasteless.server.persistance.GroceryListRepository {
       }
-
-       interface wasteless.server.persistance.ItemRepository {
-            }
-      interface wasteless.server.persistance.UserRepository {
-               {abstract} + findFirstByActiveTrue()
-           }
     }
   }
   
 
+  namespace wasteless.server {
+    namespace persistance {
+      interface wasteless.server.persistance.ItemRepository {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace persistance {
+      interface wasteless.server.persistance.UserRepository {
+          {abstract} + findFirstByActiveTrue()
+      }
+    }
+  }
+  
 
 
 

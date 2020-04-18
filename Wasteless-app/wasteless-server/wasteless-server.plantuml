@@ -210,6 +210,14 @@ title __WASTELESS-SERVER's Class Diagram__\n
 
   namespace wasteless.server {
     namespace presentation {
+      class wasteless.server.presentation.NotificationController {
+      }
+    }
+  }
+  
+
+  namespace wasteless.server {
+    namespace presentation {
       class wasteless.server.presentation.UserController {
       }
     }
@@ -286,6 +294,16 @@ title __WASTELESS-SERVER's Class Diagram__\n
   }
   
 
+  namespace wasteless.server {
+    namespace presentation {
+      namespace notification {
+        class wasteless.server.presentation.notification.WebSocketConfig {
+        }
+      }
+    }
+  }
+  
+
   wasteless.server.business.ExportService o-- wasteless.server.export.factory.FactoryProvider : factoryProvider
   wasteless.server.business.GroceryListService o-- wasteless.server.presentation.mapper.GroceryListMapper : groceryListMapper
   wasteless.server.business.GroceryListService o-- wasteless.server.persistance.GroceryListRepository : groceryListRepository
@@ -293,6 +311,7 @@ title __WASTELESS-SERVER's Class Diagram__\n
   wasteless.server.business.ItemService o-- wasteless.server.persistance.GroceryListRepository : groceryListRepository
   wasteless.server.business.ItemService o-- wasteless.server.persistance.ItemRepository : itemRepository
   wasteless.server.business.UserService o-- wasteless.server.persistance.UserRepository : userRepository
+  wasteless.server.business.WasteManagerService o-- wasteless.server.business.GroceryListService : groceryListService
   wasteless.server.exception.GlobalExceptionHandler -up-|> org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
   wasteless.server.export.factory.ReportFactory .up.|> wasteless.server.export.factory.AbstractFactory
   wasteless.server.export.report.JsonReport .up.|> wasteless.server.export.report.Report
@@ -305,8 +324,11 @@ title __WASTELESS-SERVER's Class Diagram__\n
   wasteless.server.presentation.GroceryListController o-- wasteless.server.business.WasteManagerService : wasteManagerService
   wasteless.server.presentation.ItemController o-- wasteless.server.presentation.mapper.ItemMapper : itemMapper
   wasteless.server.presentation.ItemController o-- wasteless.server.business.ItemService : itemService
+  wasteless.server.presentation.NotificationController .up.|> java.beans.PropertyChangeListener
+  wasteless.server.presentation.NotificationController o-- wasteless.server.business.WasteManagerService : wasteManagerService
   wasteless.server.presentation.UserController o-- wasteless.server.presentation.mapper.UserMapper : userMapper
   wasteless.server.presentation.UserController o-- wasteless.server.business.UserService : userService
+  wasteless.server.presentation.notification.WebSocketConfig .up.|> org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer
 
 
 right footer
