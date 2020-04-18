@@ -12,6 +12,9 @@ import { RegisterComponent } from './user/register/register.component';
 import { GroceryListComponent } from './grocery-list/grocery-list.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { CreateGroceryListComponent } from './grocery-list/create-grocery-list/create-grocery-list.component';
+import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
+import {myRxStompConfig} from './my-rx-stomp.config';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { CreateGroceryListComponent } from './grocery-list/create-grocery-list/c
     RegisterComponent,
     GroceryListComponent,
     MainPageComponent,
-    CreateGroceryListComponent
+    CreateGroceryListComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,17 @@ import { CreateGroceryListComponent } from './grocery-list/create-grocery-list/c
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: InjectableRxStompConfig,
+      useValue: myRxStompConfig
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

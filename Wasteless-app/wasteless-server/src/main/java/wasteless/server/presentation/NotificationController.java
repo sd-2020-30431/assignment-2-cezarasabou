@@ -1,20 +1,26 @@
 package wasteless.server.presentation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import wasteless.server.presentation.notification.ReportMessage;
-import wasteless.server.presentation.notification.ReportNotification;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class NotificationController {
 
+    private final SimpMessagingTemplate template;
 
-    @MessageMapping("/report")
-    @SendTo("/topic/reports")
-    public ReportNotification reportNotification(ReportMessage reportMessage) throws Exception{
-        Thread.sleep(1000);
-        //aici pun ulterior fix mesajul generat din report factory
-        return new ReportNotification("incercare!");
+    @Autowired
+    NotificationController(SimpMessagingTemplate template) {
+        this.template = template;
+    }
+
+    @MessageMapping("/send/message")
+    public void onReceivedMessage(String message) {
+        this.template.convertAndSend("/chat",
+                    new SimpleDateFormat("HH:mm:ss").format(new Date()) + "- " + message);
     }
 }
