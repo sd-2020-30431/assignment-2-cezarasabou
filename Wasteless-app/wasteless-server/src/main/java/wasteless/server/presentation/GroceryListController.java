@@ -66,13 +66,7 @@ public class GroceryListController {
                                              @PathVariable(value = "groceryListId") Long groceryListId,
                                              @Valid @RequestBody WasteCalculatorDTO wasteCalculatorDTO) throws ResourceNotFoundException{
 
-        //calcule aici
-        //nu pot accesa metoda din aceasta clasa!!
-        GroceryList groceryList = groceryListService.getGroceryListById(userId, groceryListId);
-        wasteCalculatorDTO.setWasteResult(
-                wasteManagerService.getTotalCalories(wasteCalculatorDTO.getCalculationDate(), groceryList));
-        wasteCalculatorDTO.setGroceryListName(groceryList.getGroceryListName());
-        return wasteCalculatorDTO;
+        return wasteManagerService.computeWasteDTO(userId, groceryListId, wasteCalculatorDTO);
     }
 
     @PutMapping("{userId}/updateGroceryListItem/{id}")

@@ -92,14 +92,14 @@ public class Item {
         this.groceryList = groceryList;
     }
 
-    public boolean checkIfAlreadyExpired(LocalDate currentDate){
-        return this.expirationDate.isAfter(currentDate);
+    public boolean isAlreadyExpired(LocalDate currentDate){
+        return this.expirationDate.isBefore(currentDate);
     }
 
-    public Integer getDaysUntilExpiration(LocalDate dueDate){
-        LocalDate currentDate = LocalDate.now();
-        if(dueDate.isAfter(currentDate)){
-            return (int) ChronoUnit.DAYS.between(currentDate,dueDate);
+    public Integer getDaysUntilExpiration(LocalDate calculationDay){
+
+        if(this.getExpirationDate().isAfter(calculationDay)){
+            return (int) ChronoUnit.DAYS.between(calculationDay,this.getExpirationDate());
         }
         return 0;
     }
